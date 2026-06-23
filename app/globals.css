@@ -1,0 +1,141 @@
+@import "tailwindcss";
+
+/* Class-based dark mode: toggle by adding `.dark` on <html> */
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  /* Brand pinks — constant across light/dark */
+  --color-rose-soft: #f9a8d4;
+  --color-rose-primary: #e91e8c;
+  --color-rose-deep: #c01573;
+
+  /* Semantic tokens — flip via CSS vars under .dark */
+  --color-rose-bg: var(--bg);
+  --color-surface: var(--surface);
+  --color-rose-tint: var(--tint);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+
+  --font-display: var(--font-playfair), Georgia, serif;
+  --font-body: var(--font-inter), system-ui, sans-serif;
+}
+
+:root {
+  --bg: #fff5fa;
+  --surface: #ffffff;
+  --tint: #fce7f3;
+  --ink: #3d1a2e;
+  --ink-soft: #6f4a5e;
+  --hero-1: #ffd6ec;
+  --hero-2: #ffe9f4;
+}
+
+.dark {
+  --bg: #160c12;
+  --surface: #241620;
+  --tint: #3a2230;
+  --ink: #fce9f3;
+  --ink-soft: #cda7bc;
+  --hero-1: #3a1226;
+  --hero-2: #26101c;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.gradient-hero {
+  background:
+    radial-gradient(1200px 600px at 80% -10%, var(--hero-1) 0%, transparent 55%),
+    radial-gradient(900px 500px at 0% 20%, var(--hero-2) 0%, transparent 50%),
+    linear-gradient(180deg, var(--bg) 0%, var(--surface) 100%);
+}
+
+.text-gradient {
+  background: linear-gradient(90deg, #e91e8c, #ff6fb5);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Legal page typography */
+.legal h2 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 1.35rem;
+  color: var(--ink);
+  margin-bottom: 0.5rem;
+}
+.legal p,
+.legal li {
+  line-height: 1.7;
+  font-size: 0.95rem;
+}
+.legal ul {
+  list-style: disc;
+  padding-left: 1.25rem;
+  margin-top: 0.5rem;
+}
+.legal a {
+  color: var(--color-rose-primary);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* Skip-to-content link — hidden until focused */
+.skip-link {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -120%);
+  z-index: 100;
+  background: var(--color-rose-primary);
+  color: #fff;
+  padding: 0.6rem 1.25rem;
+  border-radius: 0 0 0.75rem 0.75rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  transition: transform 0.2s ease;
+}
+.skip-link:focus {
+  transform: translate(-50%, 0);
+}
+
+/* Visible keyboard focus on all interactive elements */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--color-rose-primary);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
