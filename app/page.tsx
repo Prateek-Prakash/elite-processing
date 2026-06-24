@@ -9,6 +9,7 @@ import {
   Facebook,
   Instagram,
   CheckCircle2,
+  Check,
   ArrowRight,
   Home as HomeIcon,
 } from "lucide-react";
@@ -23,6 +24,7 @@ import Logo from "@/components/Logo";
 import {
   company,
   services,
+  pricing,
   team,
 } from "@/lib/content";
 
@@ -62,12 +64,6 @@ export default function Home() {
                 >
                   See our services
                 </a>
-                <Link
-                  href="/pricing"
-                  className="inline-flex items-center gap-2 rounded-full border border-rose-soft bg-surface px-7 py-3.5 text-sm font-semibold text-rose-deep transition hover:bg-rose-tint"
-                >
-                  View pricing
-                </Link>
               </div>
             </Reveal>
           </div>
@@ -138,6 +134,79 @@ export default function Home() {
                   </Reveal>
                 );
               })}
+            </div>
+
+            {/* Pricing */}
+            <div className="mt-20">
+              <Reveal>
+                <div className="mx-auto max-w-2xl text-center">
+                  <h3 className="font-display text-2xl font-bold text-ink sm:text-3xl">
+                    Simple, <span className="text-gradient">transparent</span>{" "}
+                    pricing.
+                  </h3>
+                  <p className="mt-4 text-ink-soft">{pricing.note}</p>
+                </div>
+              </Reveal>
+              <div className="mt-12 grid gap-6 md:grid-cols-3">
+                {pricing.tiers.map((t, i) => (
+                  <Reveal key={t.name} delay={i * 0.08}>
+                    <div
+                      className={`relative flex h-full flex-col rounded-2xl border p-8 ${
+                        t.highlight
+                          ? "border-rose-primary bg-rose-bg ring-2 ring-rose-primary"
+                          : "border-rose-tint bg-rose-bg"
+                      }`}
+                    >
+                      {t.highlight && (
+                        <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-rose-primary px-4 py-1 text-xs font-semibold uppercase tracking-wide text-white">
+                          Most popular
+                        </span>
+                      )}
+                      <h4 className="font-display text-xl font-semibold text-ink">
+                        {t.name}
+                      </h4>
+                      <p className="mt-2 text-sm text-ink-soft">{t.blurb}</p>
+                      <div className="mt-6 flex items-baseline gap-1">
+                        <span className="font-display text-4xl font-bold text-rose-primary">
+                          {t.price}
+                        </span>
+                        <span className="text-sm text-ink-soft">
+                          / {t.unit}
+                        </span>
+                      </div>
+                      <ul className="mt-6 space-y-3">
+                        {t.features.map((f) => (
+                          <li
+                            key={f}
+                            className="flex items-start gap-2 text-sm text-ink"
+                          >
+                            <Check
+                              size={18}
+                              className="mt-0.5 shrink-0 text-rose-primary"
+                            />
+                            {f}
+                          </li>
+                        ))}
+                      </ul>
+                      <a
+                        href="#contact"
+                        className={`mt-8 inline-flex items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-semibold transition-transform hover:scale-[1.03] ${
+                          t.highlight
+                            ? "bg-rose-primary text-white hover:bg-rose-deep"
+                            : "border border-rose-soft bg-surface text-rose-deep hover:bg-rose-tint"
+                        }`}
+                      >
+                        Get started <ArrowRight size={16} />
+                      </a>
+                    </div>
+                  </Reveal>
+                ))}
+              </div>
+              <p className="mx-auto mt-10 max-w-2xl text-center text-xs text-ink-soft/80">
+                Pricing shown is illustrative. Final pricing depends on loan type
+                and volume — reach out for a custom quote tailored to your
+                business.
+              </p>
             </div>
           </div>
         </section>

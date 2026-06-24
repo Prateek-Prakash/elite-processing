@@ -27,7 +27,6 @@ export const nav = [
   { label: "About", href: "#about" },
   { label: "Services", href: "#services" },
   { label: "Coverage", href: "#coverage" },
-  { label: "Pricing", href: "/pricing" },
   { label: "Testimonials", href: "#testimonials" },
   { label: "Owner", href: "#team" },
   { label: "Contact", href: "#contact" },
