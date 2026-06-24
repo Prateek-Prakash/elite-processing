@@ -1,10 +1,10 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import { nav, company } from "@/lib/content";
 import ThemeToggle from "./ThemeToggle";
+import Logo from "./Logo";
 
 export default function Navbar() {
   const [open, setOpen] = useState(false);
@@ -20,7 +20,9 @@ export default function Navbar() {
 
   // Highlight the nav link for the section currently in view.
   useEffect(() => {
-    const ids = nav.map((n) => n.href.slice(1));
+    const ids = nav
+      .filter((n) => n.href.startsWith("#"))
+      .map((n) => n.href.slice(1));
     const sections = ids
       .map((id) => document.getElementById(id))
       .filter((el): el is HTMLElement => el !== null);
@@ -53,14 +55,7 @@ export default function Navbar() {
           className="flex items-center"
           aria-label={company.legalName}
         >
-          <Image
-            src="/logo.png"
-            alt={company.name}
-            width={460}
-            height={133}
-            priority
-            className="h-9 w-auto sm:h-10"
-          />
+          <Logo priority className="h-9 w-auto sm:h-10" />
         </a>
 
         <ul className="hidden items-center gap-7 md:flex">
@@ -83,12 +78,6 @@ export default function Navbar() {
 
         <div className="hidden items-center gap-3 md:flex">
           <ThemeToggle />
-          <a
-            href="#contact"
-            className="rounded-full bg-rose-primary px-5 py-2.5 text-sm font-semibold text-white shadow-sm transition-transform hover:scale-[1.03] hover:bg-rose-deep"
-          >
-            Partner with us
-          </a>
         </div>
 
         <div className="flex items-center gap-2 md:hidden">

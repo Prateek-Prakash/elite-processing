@@ -7,6 +7,12 @@ const upcoming = new Set(upcomingStates);
 // Small eastern states get external callout labels (north -> south) so their
 // abbreviations don't overlap on the map.
 const EXTERNAL = ["VT", "NH", "MA", "RI", "CT", "NJ", "DE", "MD", "DC"];
+
+// Manual label nudges for states whose geometric centroid lands awkwardly
+// (e.g. Florida's centroid falls in the Gulf due to the panhandle/peninsula L).
+const LABEL_OVERRIDES: Record<string, { cx: number; cy: number }> = {
+  Florida: { cx: 762, cy: 476 },
+};
 const EXT_X = 1024; // label column, to the right of the map
 const EXT_Y0 = 70; // first external label y
 const EXT_DY = 30; // spacing between external labels
@@ -66,21 +72,24 @@ export default function UsMap() {
         {/* In-place abbreviations for larger states */}
         {usStatePaths
           .filter((s) => s.abbr && !EXTERNAL.includes(s.abbr))
-          .map((s) => (
+          .map((s) => {
+            const pos = LABEL_OVERRIDES[s.name] ?? { cx: s.cx, cy: s.cy };
+            return (
             <text
               key={`t-${s.abbr}`}
-              x={s.cx}
-              y={s.cy}
+              x={pos.cx}
+              y={pos.cy}
               textAnchor="middle"
               dominantBaseline="central"
-              fontSize={13}
-              fontWeight={600}
+              fontSize={15}
+              fontWeight={800}
               fill={textFor[statusOf(s.name)]}
-              style={{ pointerEvents: "none" }}
+              style={{ pointerEvents: "none", letterSpacing: "0.3px" }}
             >
               {s.abbr}
             </text>
-          ))}
+            );
+          })}
 
         {/* External callouts for small eastern states */}
         {EXTERNAL.map((abbr, i) => {
@@ -102,9 +111,10 @@ export default function UsMap() {
                 x={EXT_X}
                 y={ly}
                 dominantBaseline="central"
-                fontSize={13}
-                fontWeight={600}
+                fontSize={15}
+                fontWeight={800}
                 fill="var(--ink)"
+                style={{ letterSpacing: "0.3px" }}
               >
                 {abbr}
               </text>

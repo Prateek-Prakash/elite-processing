@@ -21,6 +21,7 @@ export const metadata: Metadata = {
   title: "Elite Processing Team | Third-Party Loan Processing",
   description:
     "Elite Processing Team LLC is a third-party loan processing company helping mortgage brokers expand their business with quick, easy transactions. NMLS #2186494.",
+  alternates: { canonical: "/" },
   keywords: [
     "third-party loan processing",
     "contract loan processor",
@@ -66,7 +67,11 @@ export default function RootLayout({
   const noFlash = `(function(){try{var t=localStorage.getItem('theme');if(t==='dark'||(!t&&window.matchMedia('(prefers-color-scheme: dark)').matches)){document.documentElement.classList.add('dark')}}catch(e){}})();`;
 
   return (
-    <html lang="en" className={`${playfair.variable} ${inter.variable}`}>
+    <html
+      lang="en"
+      className={`${playfair.variable} ${inter.variable}`}
+      suppressHydrationWarning
+    >
       <head>
         <script dangerouslySetInnerHTML={{ __html: noFlash }} />
       </head>

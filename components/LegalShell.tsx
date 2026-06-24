@@ -1,7 +1,7 @@
-import Image from "next/image";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import ThemeToggle from "./ThemeToggle";
+import Logo from "./Logo";
 import { company } from "@/lib/content";
 
 export default function LegalShell({
@@ -14,24 +14,17 @@ export default function LegalShell({
   children: React.ReactNode;
 }) {
   return (
-    <>
+    <div className="flex min-h-screen flex-col">
       <header className="border-b border-rose-tint bg-surface/85 backdrop-blur-md">
         <nav className="mx-auto flex max-w-3xl items-center justify-between px-5 py-4">
           <Link href="/" aria-label={company.legalName} className="flex items-center">
-            <Image
-              src="/logo.png"
-              alt={company.name}
-              width={460}
-              height={133}
-              priority
-              className="h-9 w-auto"
-            />
+            <Logo priority className="h-9 w-auto" />
           </Link>
           <ThemeToggle />
         </nav>
       </header>
 
-      <main id="main-content" className="mx-auto max-w-3xl px-5 py-14">
+      <main id="main-content" className="mx-auto w-full max-w-3xl flex-1 px-5 py-14">
         <Link
           href="/"
           className="inline-flex items-center gap-2 text-sm font-medium text-rose-primary hover:text-rose-deep"
@@ -60,6 +53,6 @@ export default function LegalShell({
           </div>
         </div>
       </footer>
-    </>
+    </div>
   );
 }

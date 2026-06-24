@@ -1,20 +1,13 @@
 import Link from "next/link";
-import Image from "next/image";
 import { Home, Phone } from "lucide-react";
 import { company } from "@/lib/content";
+import Logo from "@/components/Logo";
 
 export default function NotFound() {
   return (
     <main className="gradient-hero flex min-h-screen flex-col items-center justify-center px-5 text-center">
       <Link href="/" aria-label={company.legalName} className="mb-10">
-        <Image
-          src="/logo.png"
-          alt={company.name}
-          width={460}
-          height={133}
-          priority
-          className="h-10 w-auto"
-        />
+        <Logo priority className="h-10 w-auto" />
       </Link>
 
       <p className="font-display text-7xl font-bold text-gradient">404</p>

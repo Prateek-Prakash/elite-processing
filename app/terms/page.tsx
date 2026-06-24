@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: "Terms of Service | Elite Processing Team",
   description:
     "The terms governing use of the Elite Processing Team LLC website.",
+  alternates: { canonical: "/terms" },
 };
 
 export default function TermsPage() {

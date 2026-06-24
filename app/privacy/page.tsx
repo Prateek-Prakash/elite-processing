@@ -6,6 +6,7 @@ export const metadata: Metadata = {
   title: "Privacy Policy | Elite Processing Team",
   description:
     "How Elite Processing Team LLC collects, uses, and protects information submitted through this website.",
+  alternates: { canonical: "/privacy" },
 };
 
 export default function PrivacyPage() {

@@ -6,11 +6,9 @@ import {
   Phone,
   Mail,
   MapPin,
-  Quote,
   Facebook,
   Instagram,
   CheckCircle2,
-  Clock,
   ArrowRight,
   Home as HomeIcon,
 } from "lucide-react";
@@ -20,13 +18,11 @@ import Navbar from "@/components/Navbar";
 import Reveal from "@/components/Reveal";
 import ContactForm from "@/components/ContactForm";
 import UsMap from "@/components/UsMap";
+import TestimonialCarousel from "@/components/TestimonialCarousel";
+import Logo from "@/components/Logo";
 import {
   company,
   services,
-  approvedStates,
-  upcomingStates,
-  lenders,
-  testimonials,
   team,
 } from "@/lib/content";
 
@@ -38,70 +34,40 @@ export default function Home() {
       <Navbar />
       <main id="main-content">
         {/* HERO */}
-        <section className="gradient-hero relative overflow-hidden pt-32 pb-20">
-          <div className="mx-auto grid max-w-6xl items-center gap-12 px-5 md:grid-cols-2">
-            <div>
-              <Reveal>
-                <span className="inline-flex items-center gap-2 rounded-full border border-rose-soft/50 bg-surface/70 px-4 py-1.5 text-xs font-semibold uppercase tracking-wide text-rose-deep">
-                  Third-Party Loan Processing
-                </span>
-              </Reveal>
-              <Reveal delay={0.08}>
-                <h1 className="mt-6 font-display text-4xl font-bold leading-tight text-ink sm:text-5xl md:text-6xl">
-                  An easy solution for mortgage brokers to{" "}
-                  <span className="text-gradient">expand their business.</span>
-                </h1>
-              </Reveal>
-              <Reveal delay={0.16}>
-                <p className="mt-6 max-w-xl text-lg text-ink-soft">
-                  {company.blurb} We remove time-consuming tasks off your plate
-                  so you can focus on closing more loans.
-                </p>
-              </Reveal>
-              <Reveal delay={0.24}>
-                <div className="mt-9 flex flex-wrap items-center gap-4">
-                  <a
-                    href="#contact"
-                    className="inline-flex items-center gap-2 rounded-full bg-rose-primary px-7 py-3.5 text-sm font-semibold text-white shadow-md shadow-rose-soft/40 transition-transform hover:scale-[1.03] hover:bg-rose-deep"
-                  >
-                    Partner with us <ArrowRight size={16} />
-                  </a>
-                  <a
-                    href="#services"
-                    className="inline-flex items-center gap-2 rounded-full border border-rose-soft bg-surface px-7 py-3.5 text-sm font-semibold text-rose-deep transition hover:bg-rose-tint"
-                  >
-                    See our services
-                  </a>
-                </div>
-              </Reveal>
-              <Reveal delay={0.32}>
-                <dl className="mt-14 grid max-w-lg grid-cols-3 gap-6">
-                  {[
-                    { n: "16", l: "Approved states" },
-                    { n: "6", l: "States coming soon" },
-                    { n: "100%", l: "Focus on your file" },
-                  ].map((s) => (
-                    <div key={s.l}>
-                      <dt className="font-display text-3xl font-bold text-rose-primary">
-                        {s.n}
-                      </dt>
-                      <dd className="mt-1 text-xs text-ink-soft">{s.l}</dd>
-                    </div>
-                  ))}
-                </dl>
-              </Reveal>
-            </div>
-            <Reveal delay={0.2}>
-              <div className="relative">
-                <div className="absolute -inset-4 -z-10 rounded-[2rem] bg-gradient-to-br from-rose-soft/40 to-transparent blur-2xl" />
-                <Image
-                  src="/hero-house-coins.png"
-                  alt="A model house resting on a stack of coins"
-                  width={600}
-                  height={396}
-                  priority
-                  className="w-full rounded-[2rem] object-cover shadow-[0_30px_80px_rgba(233,30,140,0.18)]"
-                />
+        <section className="gradient-hero relative overflow-hidden pt-36 pb-24">
+          <div className="mx-auto max-w-3xl px-5 text-center">
+            <Reveal>
+              <h1 className="font-display text-4xl font-bold leading-tight text-ink sm:text-5xl md:text-6xl">
+                An easy solution for mortgage brokers to{" "}
+                <span className="text-gradient">expand their business.</span>
+              </h1>
+            </Reveal>
+            <Reveal delay={0.16}>
+              <p className="mx-auto mt-6 max-w-xl text-lg text-ink-soft">
+                {company.blurb} We remove time-consuming tasks off your plate so
+                you can focus on closing more loans.
+              </p>
+            </Reveal>
+            <Reveal delay={0.24}>
+              <div className="mt-9 flex flex-wrap items-center justify-center gap-4">
+                <a
+                  href="#contact"
+                  className="inline-flex items-center gap-2 rounded-full bg-rose-primary px-7 py-3.5 text-sm font-semibold text-white shadow-md shadow-rose-soft/40 transition-transform hover:scale-[1.03] hover:bg-rose-deep"
+                >
+                  Partner with us <ArrowRight size={16} />
+                </a>
+                <a
+                  href="#services"
+                  className="inline-flex items-center gap-2 rounded-full border border-rose-soft bg-surface px-7 py-3.5 text-sm font-semibold text-rose-deep transition hover:bg-rose-tint"
+                >
+                  See our services
+                </a>
+                <Link
+                  href="/pricing"
+                  className="inline-flex items-center gap-2 rounded-full border border-rose-soft bg-surface px-7 py-3.5 text-sm font-semibold text-rose-deep transition hover:bg-rose-tint"
+                >
+                  View pricing
+                </Link>
               </div>
             </Reveal>
           </div>
@@ -109,19 +75,24 @@ export default function Home() {
 
         {/* ABOUT */}
         <section id="about" className="py-20">
-          <div className="mx-auto grid max-w-6xl gap-12 px-5 md:grid-cols-2 md:items-center">
+          <div className="mx-auto max-w-2xl px-5 text-center">
             <Reveal>
               <h2 className="font-display text-3xl font-bold text-ink sm:text-4xl">
                 Your file, handled with care.
               </h2>
               <p className="mt-5 text-ink-soft">{company.mission}</p>
-              <ul className="mt-7 space-y-3">
+            </Reveal>
+            <Reveal delay={0.1}>
+              <ul className="mx-auto mt-8 grid gap-3 text-left sm:max-w-lg">
                 {[
                   "Quick, easy transactions for LO and borrower",
                   "Clear, prompt communication at every step",
                   "More volume without more admin overhead",
                 ].map((p) => (
-                  <li key={p} className="flex items-start gap-3 text-sm text-ink">
+                  <li
+                    key={p}
+                    className="flex items-start gap-3 rounded-xl border border-rose-tint bg-surface px-4 py-3 text-sm text-ink"
+                  >
                     <CheckCircle2
                       size={20}
                       className="mt-0.5 shrink-0 text-rose-primary"
@@ -130,25 +101,6 @@ export default function Home() {
                   </li>
                 ))}
               </ul>
-            </Reveal>
-            <Reveal delay={0.12}>
-              <div className="relative overflow-hidden rounded-3xl shadow-[0_20px_60px_rgba(233,30,140,0.15)]">
-                <Image
-                  src="/puzzle-house.png"
-                  alt="A house illustration assembled from puzzle pieces"
-                  width={600}
-                  height={330}
-                  className="w-full object-cover"
-                />
-                <div className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-ink/80 to-transparent p-6">
-                  <p className="font-display text-lg font-semibold text-white">
-                    &ldquo;{company.tagline}&rdquo;
-                  </p>
-                  <p className="mt-1 text-xs text-white/80">
-                    {company.legalName} · NMLS #{company.nmls}
-                  </p>
-                </div>
-              </div>
             </Reveal>
           </div>
         </section>
@@ -209,82 +161,11 @@ export default function Home() {
                 <UsMap />
               </div>
             </Reveal>
-            <div className="mt-12 grid gap-8 md:grid-cols-2">
-              <Reveal>
-                <div className="rounded-2xl border border-rose-tint bg-surface p-7">
-                  <div className="flex items-center gap-2 text-rose-primary">
-                    <CheckCircle2 size={18} />
-                    <h3 className="text-sm font-semibold uppercase tracking-wide">
-                      Approved ({approvedStates.length})
-                    </h3>
-                  </div>
-                  <div className="mt-5 flex flex-wrap gap-2">
-                    {approvedStates.map((st) => (
-                      <span
-                        key={st}
-                        className="rounded-full bg-rose-tint px-3 py-1.5 text-xs font-medium text-rose-deep"
-                      >
-                        {st}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </Reveal>
-              <Reveal delay={0.12}>
-                <div className="rounded-2xl border border-rose-tint bg-surface p-7">
-                  <div className="flex items-center gap-2 text-ink-soft">
-                    <Clock size={18} />
-                    <h3 className="text-sm font-semibold uppercase tracking-wide">
-                      Coming soon ({upcomingStates.length})
-                    </h3>
-                  </div>
-                  <div className="mt-5 flex flex-wrap gap-2">
-                    {upcomingStates.map((st) => (
-                      <span
-                        key={st}
-                        className="rounded-full border border-rose-soft/50 px-3 py-1.5 text-xs font-medium text-ink-soft"
-                      >
-                        {st}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </Reveal>
-            </div>
-          </div>
-        </section>
-
-        {/* LENDERS */}
-        <section id="lenders" className="bg-surface py-16">
-          <div className="mx-auto max-w-6xl px-5 text-center">
-            <Reveal>
-              <p className="text-sm font-semibold uppercase tracking-wide text-ink-soft">
-                We submit to the lenders you already work with
-              </p>
-            </Reveal>
-            <Reveal delay={0.1}>
-              <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
-                {lenders.map((l) => (
-                  <div
-                    key={l.name}
-                    className="flex h-24 items-center justify-center rounded-2xl border border-rose-tint bg-white p-5 shadow-[0_6px_20px_rgba(233,30,140,0.05)] transition hover:-translate-y-0.5 hover:shadow-[0_12px_30px_rgba(233,30,140,0.12)] dark:border-rose-soft/25 dark:shadow-[0_8px_30px_rgba(233,30,140,0.22)] dark:ring-1 dark:ring-rose-soft/15 dark:hover:shadow-[0_14px_40px_rgba(233,30,140,0.32)]"
-                  >
-                    <Image
-                      src={l.file}
-                      alt={l.name}
-                      width={200}
-                      height={56}
-                      className="max-h-12 w-auto rounded-md object-contain"
-                    />
-                  </div>
-                ))}
-              </div>
-            </Reveal>
           </div>
         </section>
 
         {/* TESTIMONIALS */}
-        <section id="testimonials" className="py-20">
+        <section id="testimonials" className="bg-surface py-20">
           <div className="mx-auto max-w-6xl px-5">
             <Reveal>
               <div className="mx-auto max-w-2xl text-center">
@@ -293,46 +174,24 @@ export default function Home() {
                 </h2>
               </div>
             </Reveal>
-            <div className="mt-12 grid gap-6 md:grid-cols-2">
-              {testimonials.map((t, i) => (
-                <Reveal key={t.name} delay={i * 0.1}>
-                  <figure className="h-full rounded-2xl border border-rose-tint bg-surface p-8 shadow-[0_12px_40px_rgba(233,30,140,0.06)]">
-                    <Quote className="text-rose-soft" size={32} />
-                    <blockquote className="mt-4 text-ink">
-                      {t.quote}
-                    </blockquote>
-                    <figcaption className="mt-6 flex items-center gap-3">
-                      <span className="grid h-11 w-11 place-items-center rounded-full bg-rose-tint font-display text-base font-bold text-rose-deep">
-                        {t.name[0]}
-                      </span>
-                      <div>
-                        <p className="text-sm font-semibold text-ink">
-                          {t.name}
-                        </p>
-                        <p className="text-xs text-ink-soft">{t.role}</p>
-                      </div>
-                    </figcaption>
-                  </figure>
-                </Reveal>
-              ))}
-            </div>
+            <TestimonialCarousel />
           </div>
         </section>
 
         {/* TEAM */}
-        <section id="team" className="bg-surface py-20">
+        <section id="team" className="py-20">
           <div className="mx-auto max-w-6xl px-5">
             <Reveal>
               <div className="mx-auto max-w-2xl text-center">
                 <h2 className="font-display text-3xl font-bold text-ink sm:text-4xl">
-                  Meet the team
+                  Meet the owner
                 </h2>
               </div>
             </Reveal>
-            <div className="mx-auto mt-12 grid max-w-4xl gap-8 sm:grid-cols-2">
+            <div className="mx-auto mt-12 max-w-md">
               {team.map((m, i) => (
                 <Reveal key={m.name} delay={i * 0.1}>
-                  <div className="flex h-full flex-col rounded-3xl border border-rose-tint bg-rose-bg p-6 text-center shadow-[0_12px_40px_rgba(233,30,140,0.06)]">
+                  <div className="flex h-full flex-col rounded-3xl border border-rose-tint bg-surface p-8 text-center shadow-[0_12px_40px_rgba(233,30,140,0.06)]">
                     <div className="relative mx-auto h-40 w-40 overflow-hidden rounded-full ring-4 ring-rose-soft/40">
                       <Image
                         src={m.photo}
@@ -359,9 +218,9 @@ export default function Home() {
         </section>
 
         {/* CONTACT */}
-        <section id="contact" className="py-20">
+        <section id="contact" className="bg-surface py-20">
           <div className="mx-auto max-w-6xl px-5">
-            <div className="grid gap-12 rounded-3xl bg-gradient-to-br from-rose-tint to-rose-bg p-8 shadow-[0_30px_80px_rgba(233,30,140,0.12)] md:grid-cols-2 md:p-12">
+            <div className="grid gap-12 rounded-3xl border border-rose-tint bg-rose-tint/40 p-8 md:grid-cols-2 md:p-12">
               <Reveal>
                 <div>
                   <h2 className="font-display text-3xl font-bold text-ink sm:text-4xl">
@@ -474,13 +333,7 @@ export default function Home() {
       <footer className="border-t border-rose-tint bg-surface py-10">
         <div className="mx-auto max-w-6xl px-5">
           <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
-            <Image
-              src="/logo.png"
-              alt={company.legalName}
-              width={360}
-              height={104}
-              className="h-8 w-auto"
-            />
+            <Logo className="h-8 w-auto" />
             <p className="text-xs text-ink-soft">
               © {company.year} {company.legalName} ·{" "}
               <a

@@ -27,9 +27,9 @@ export const nav = [
   { label: "About", href: "#about" },
   { label: "Services", href: "#services" },
   { label: "Coverage", href: "#coverage" },
-  { label: "Lenders", href: "#lenders" },
+  { label: "Pricing", href: "/pricing" },
   { label: "Testimonials", href: "#testimonials" },
-  { label: "Team", href: "#team" },
+  { label: "Owner", href: "#team" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -57,6 +57,53 @@ export const services = [
     icon: "KeyRound",
   },
 ];
+
+// PRICING — placeholder figures. Replace `price` and feature lists with the
+// real numbers/terms. `highlight: true` visually features a tier.
+export const pricing = {
+  note: "Flat per-file pricing, paid at closing. No monthly fees, no upfront cost — you only pay when the loan closes.",
+  tiers: [
+    {
+      name: "Conventional & Government",
+      price: "$XXX",
+      unit: "per file",
+      blurb: "Conventional, FHA, VA, and USDA loans.",
+      features: [
+        "Full document retrieval",
+        "Submission to underwriting",
+        "Condition follow-up to clear-to-close",
+        "Closing coordination",
+      ],
+      highlight: false,
+    },
+    {
+      name: "Non-QM & Jumbo",
+      price: "$XXX",
+      unit: "per file",
+      blurb: "Bank statement, DSCR, jumbo, and other non-QM products.",
+      features: [
+        "Everything in Conventional & Government",
+        "Complex income & asset review",
+        "Specialized non-QM lender submission",
+        "Priority condition management",
+      ],
+      highlight: true,
+    },
+    {
+      name: "Contract / Per-Hour",
+      price: "$XX",
+      unit: "per hour",
+      blurb: "Overflow help and à la carte processing tasks.",
+      features: [
+        "Pay only for time used",
+        "Scales with your pipeline",
+        "Great for busy seasons",
+        "No long-term commitment",
+      ],
+      highlight: false,
+    },
+  ],
+};
 
 export const approvedStates = [
   "California",
@@ -86,37 +133,29 @@ export const upcomingStates = [
   "Washington",
 ];
 
-// Real lender logos pulled from the original site, stored in /public/lenders/.
-export const lenders = [
-  { name: "UWM", file: "/lenders/uwm.png" },
-  { name: "Rocket Pro TPO", file: "/lenders/rocket-pro-tpo.jpg" },
-  { name: "Cardinal Financial", file: "/lenders/cardinal-financial.png" },
-  { name: "Carrington Mortgage Services", file: "/lenders/carrington.png" },
-  { name: "EPM", file: "/lenders/epm.png" },
-  { name: "Flagstar Bank", file: "/lenders/flagstar.png" },
-  { name: "Greenbox Loans", file: "/lenders/greenbox.png" },
-  { name: "Homepoint", file: "/lenders/homepoint.png" },
-  { name: "Mutual Mortgage", file: "/lenders/mutual-mortgage.png" },
-  { name: "Provident Funding", file: "/lenders/provident-funding.png" },
-  { name: "Resi Central", file: "/lenders/resi-central.png" },
-  { name: "Sierra Pacific Mortgage", file: "/lenders/sierra-pacific.png" },
-  { name: "United Ag Lending", file: "/lenders/united-ag-lending.png" },
-  { name: "WestGen Lending", file: "/lenders/westgen.png" },
-  { name: "Windsor Mortgage", file: "/lenders/windsor.png" },
-  { name: "Caliber Home Loans", file: "/lenders/caliber.png" },
-];
-
 export const testimonials = [
   {
     quote:
-      "Adding Deepa to my team was one of the best decisions I made. She has helped me increase my volume and takes the processing stress off my plate so I can focus on my clients.",
+      "Adding Deepa to my team was one of the best decisions I made. She is very attentive to detail and very responsive to all my clients. She has helped me increase my volume by taking the back-end paperwork off my plate and letting me focus on the front-end. I would recommend her to anyone looking to grow their business.",
     name: "Nikki",
     role: "Creative Mortgage",
   },
   {
     quote:
-      "Deepa is a hard worker and a quick learner. She communicates clearly and follows up promptly. I highly recommend the Elite Processing Team.",
+      "Deepa is a hard worker and a quick learner. She communicates clearly and follows up promptly with clients, underwriters, and third-party agents to get the necessary information and get the loan to closing. Always willing to go the extra mile.",
     name: "Chirag",
+    role: "VEMA Mortgage",
+  },
+  {
+    quote:
+      "Deepa and her team are the best processors I have ever worked with. She utilizes all technology available which makes Elite Processing loans close quicker and easier than other companies. She has amazing communication skills, so you are always kept informed and updated. From start to finish she makes the process transparent and flawless. I would not recommend anyone else more than her!",
+    name: "Haley",
+    role: "UWM",
+  },
+  {
+    quote:
+      "Deepa is by far the best loan processor I have worked with in recent years. She has strong communication skills and maintains constant communication with clients to ensure a timely closing of loans while maintaining the highest level of customer service. I highly recommend Deepa and her team for loan processing.",
+    name: "Vipul",
     role: "VEMA Mortgage",
   },
 ];
@@ -127,11 +166,5 @@ export const team = [
     role: "Founder & CEO",
     photo: "/team/deepa-patel.jpg",
     bio: "When I joined the mortgage industry, I quickly realized that the most important part of the loan approval process, loan processing, was also the most tedious. Through my experience in this field, I gathered techniques to make this process seamless for all parties involved. This motivated me to create Elite Processing Team. Attention to detail has always been one of my strengths, and I intend to channel this skill to make Elite Processing Team the perfect link between the loan officer, the lender, and most importantly, the borrower.",
-  },
-  {
-    name: "Christina Sanchez",
-    role: "Loan Processor",
-    photo: "/team/christina-sanchez.jpg",
-    bio: "I have been working in the mortgage industry for several years, during which I have come to understand the critical importance of customer service and effective communication. Whether dealing with Loan Officers, Lenders, or Borrowers, providing exceptional customer service significantly streamlines the loan process. My expertise includes both conventional loans and Non-QM loans.",
   },
 ];
